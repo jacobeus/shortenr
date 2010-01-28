@@ -18,7 +18,7 @@ h2. Prerequisites
 And to test it locally:
 
 * Ruby
-* Some gems: sudo gem install sinatra dm-core dm-validations dm-aggregates do_mysql
+* Some gems: @sudo gem install sinatra dm-core dm-validations dm-aggregates do_mysql@
 
 h2. Usage
 

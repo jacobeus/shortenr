@@ -7,7 +7,7 @@ class Url
   property :short,      String, :default => ""
 end
 get('/_privatesubmit') do
-  target = URI::parse(params[:url]) rescue status(404) && return
+  target = URI::parse(params[:url]) rescue status(400) && return
   target = [target.to_s].unshift(("http://" unless target.scheme)).join
   "http://#{request.host}/" + (Url.first(:target => target) || Url.create!(:target => target, :short=>(Url.count+1).to_s(36))).short
 end
