@@ -1,54 +1,53 @@
-Make your own URL shortener in 3 minutes
-========================================
+h1. Make your own URL shortener in 3 minutes
 
 Shortenr is a 14-line web application allowing you to have your own private URL shortener.
 
-Tools/services:
+h2. Tools/services
 
-- Sinatra as web framework
-- DataMapper as ORM
-- Heroku.com for the free hosting
-- ZerigoDNS for DNS
+* Sinatra as web framework
+* DataMapper as ORM
+* Heroku.com for the free hosting
+* ZerigoDNS for DNS
 
-Prerequisites:
+h2. Prerequisites
 
-- A free, properly configured account on Heroku.com
-- A (ideally short) domain name, configured to point to Zerigo DNS, as explained on:
+* A free, properly configured account on Heroku.com
+* A (ideally short) domain name, configured to point to Zerigo DNS, as explained on:
   http://www.zerigo.com/docs/managed-dns/nameservers
+
 And to test it locally:
-- Ruby
-- Some gems: sudo gem install sinatra dm-core dm-validations dm-aggregates do_mysql
 
-Usage:
+* Ruby
+* Some gems: sudo gem install sinatra dm-core dm-validations dm-aggregates do_mysql
 
-1) Configure the app on Heroku
-git clone http://github.com/njacobeus/shortenr.git
-heroku create {name_of_your_shortener}
-heroku addons:add custom_domains
-heroku domains:add {your_domain_name}
-heroku addons:add zerigo_dns
-git push heroku master
+h2. Usage
 
-2) Create the "shortener" database locally and send it to Heroku
+h3. Configure the app on Heroku
 
-Either with Datamapper:
+@git clone http://github.com/njacobeus/shortenr.git@
+@heroku create {name_of_your_shortener}@
+@heroku addons:add custom_domains@
+@heroku domains:add {your_domain_name}@
+@heroku addons:add zerigo_dns@
+@git push heroku master@
 
-- Add the line "DataMapper.auto_migrate" in shortener.rb
-- Launch it once locally (ruby shortener.rb) and stop it
-- Remove the line
+h3. Create the "shortener" database locally and send it to Heroku
 
-Or manually in your MySQL client: you only need an "urls" table with the 3 fields (id, target, short) as described in shortener.rb.
+# Either with Datamapper:
+** Add the line "DataMapper.auto_migrate" in shortener.rb
+** Launch it once locally (ruby shortener.rb) and stop it
+** Remove the line
+# Or manually in your MySQL client: you only need an "urls" table with the 3 fields (id, target, short) as described in shortener.rb.
 
 Then send it to Heroku:
 
 heroku db:push mysql://root@localhost/shortener
 
-4) Submit URLs to shorten via your "secret" access URL:
+h3. Submit URLs to shorten via your "secret" access URL:
   http://{your_domain_name}/_privatesubmit?url={url_to_add}
   (you can obviously change that URL to make it a little bit more secret)
 
-4) That's it! Enjoy :)
-
+h2. Demo
 
 You can test it in action on http://tu.tl ; there is no public page, so you have to enter new URLs via
   http://tu.tl/_privatesubmit?url={url_to_add}
