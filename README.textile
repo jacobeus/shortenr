@@ -3,8 +3,6 @@ Make your own URL shortener in 3 minutes
 
 Shortenr is a 14-line web application allowing you to have your own private URL shortener.
 
-
-
 Tools/services:
 
 - Sinatra as web framework
@@ -46,7 +44,11 @@ Then send it to Heroku:
 heroku db:push mysql://root@localhost/shortener
 
 4) Submit URLs to shorten via your "secret" access URL:
-  http://{your_domain_name}/_privateshortener?url={url_to_add}
+  http://{your_domain_name}/_privatesubmit?url={url_to_add}
   (you can obviously change that URL to make it a little bit more secret)
 
 4) That's it! Enjoy :)
+
+
+You can test it in action on http://tu.tl ; there is no public page, so you have to enter new URLs via
+  http://tu.tl/_privatesubmit?url={url_to_add}
