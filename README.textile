@@ -24,12 +24,12 @@ h2. Usage
 
 h3. Configure the app on Heroku
 
-@git clone http://github.com/njacobeus/shortenr.git@
-@heroku create {name_of_your_shortener}@
-@heroku addons:add custom_domains@
-@heroku domains:add {your_domain_name}@
-@heroku addons:add zerigo_dns@
-@git push heroku master@
+bc. git clone http://github.com/njacobeus/shortenr.git
+heroku create {name_of_your_shortener}
+heroku addons:add custom_domains
+heroku domains:add {your_domain_name}
+heroku addons:add zerigo_dns
+git push heroku master
 
 h3. Create the "shortener" database locally and send it to Heroku
 
@@ -41,13 +41,16 @@ h3. Create the "shortener" database locally and send it to Heroku
 
 Then send it to Heroku:
 
-heroku db:push mysql://root@localhost/shortener
+bc. heroku db:push mysql://root@localhost/shortener
 
 h3. Submit URLs to shorten via your "secret" access URL:
-  http://{your_domain_name}/_privatesubmit?url={url_to_add}
-  (you can obviously change that URL to make it a little bit more secret)
+
+"http://{your_domain_name}/_privatesubmit?url={url_to_add}":http://{your_domain_name}/_privatesubmit?url={url_to_add}
+
+(you can obviously change that URL to make it a little bit more secret)
 
 h2. Demo
 
 You can test it in action on http://tu.tl ; there is no public page, so you have to enter new URLs via
-  http://tu.tl/_privatesubmit?url={url_to_add}
+
+"http://tu.tl/_privatesubmit?url={url_to_add}":http://tu.tl/_privatesubmit?url={url_to_add}
