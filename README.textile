@@ -1,0 +1,52 @@
+Make your own URL shortener in 3 minutes
+========================================
+
+Shortenr is a 14-line web application allowing you to have your own private URL shortener.
+
+
+
+Tools/services:
+
+- Sinatra as web framework
+- DataMapper as ORM
+- Heroku.com for the free hosting
+- ZerigoDNS for DNS
+
+Prerequisites:
+
+- A free, properly configured account on Heroku.com
+- A (ideally short) domain name, configured to point to Zerigo DNS, as explained on:
+  http://www.zerigo.com/docs/managed-dns/nameservers
+And to test it locally:
+- Ruby
+- Some gems: sudo gem install sinatra dm-core dm-validations dm-aggregates do_mysql
+
+Usage:
+
+1) Configure the app on Heroku
+git clone http://github.com/njacobeus/shortenr.git
+heroku create {name_of_your_shortener}
+heroku addons:add custom_domains
+heroku domains:add {your_domain_name}
+heroku addons:add zerigo_dns
+git push heroku master
+
+2) Create the "shortener" database locally and send it to Heroku
+
+Either with Datamapper:
+
+- Add the line "DataMapper.auto_migrate" in shortener.rb
+- Launch it once locally (ruby shortener.rb) and stop it
+- Remove the line
+
+Or manually in your MySQL client: you only need an "urls" table with the 3 fields (id, target, short) as described in shortener.rb.
+
+Then send it to Heroku:
+
+heroku db:push mysql://root@localhost/shortener
+
+4) Submit URLs to shorten via your "secret" access URL:
+  http://{your_domain_name}/_privateshortener?url={url_to_add}
+  (you can obviously change that URL to make it a little bit more secret)
+
+4) That's it! Enjoy :)
